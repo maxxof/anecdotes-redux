@@ -19,12 +19,13 @@ const Anecdote = ({ anecdote, handleClick }) => {
 const AnecdoteList = () => {
     const dispatch = useDispatch()
     const filter = useSelector(state => state.filter)
-    const anecdotes = useSelector(({ anecdotes }) => {
+    let anecdotes = useSelector(({ anecdotes }) => {
       return anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter))
     })
+    anecdotes = anecdotes.sort((a, b) => b.votes - a.votes)
 
     const handleVote = anecdote => {
-      dispatch(vote(anecdote.id))
+      dispatch(vote(anecdote))
       dispatch(setNotification(`You voted for '${anecdote.content}'`))
     }
 

@@ -13,7 +13,7 @@ const Notification = () => {
   }
 
   useEffect(() => {
-    if (notification) {
+    if (notification !== null) {
       dispatch(setNotification(notification))
       setTimeout(() => {
         dispatch(setNotification(null))
